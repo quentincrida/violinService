@@ -20,14 +20,14 @@ public class Violin {
     private int age;
 
     @ManyToOne
-    @JoinColumn(name="firstViolins_id", nullable = false)
-    private FirstViolins firstViolins;
+    @JoinColumn(name="first_id", nullable = false)
+    private First first;
 
-    public Violin(String firstName, String lastName, int age, FirstViolins firstViolins) {
+    public Violin(String firstName, String lastName, int age, First first) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.firstViolins = firstViolins;
+        this.first = first;
     }
     public Violin(){}
 
@@ -63,11 +63,11 @@ public class Violin {
         this.id = id;
     }
 
-    public FirstViolins getFirstViolins() {
-        return firstViolins;
+    public First getFirst() {
+        return first;
     }
 
-    public void setFirstViolins(FirstViolins firstViolins) {
-        this.firstViolins = firstViolins;
+    public void setFirst(First first) {
+        this.first = first;
     }
 }

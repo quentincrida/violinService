@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="first_violins")
+@Table(name="firsts")
 
-public class FirstViolins {
+public class First {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="first_violins")
+    @Column(name="name")
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "firstViolins")
-    private List<Violin> firstViolins;
+    @OneToMany(mappedBy = "first")
+    private List<Violin> firsts;
 
-    public FirstViolins(String name) {
+    public First(String name) {
         this.name = name;
-        this.firstViolins = new ArrayList<Violin>();
+        this.firsts = new ArrayList<Violin>();
     }
-    public FirstViolins(){}
+    public First(){}
 
     public String getName() {
         return name;
@@ -37,11 +37,11 @@ public class FirstViolins {
     }
 
     public List<Violin> getFirstViolins() {
-        return firstViolins;
+        return firsts;
     }
 
-    public void setFirstViolins(List<Violin> firstViolins) {
-        this.firstViolins = firstViolins;
+    public void setFirstViolins(List<Violin> firsts) {
+        this.firsts = firsts;
     }
 
     public Long getId() {
