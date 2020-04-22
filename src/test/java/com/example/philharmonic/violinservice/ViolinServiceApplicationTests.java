@@ -1,20 +1,18 @@
 package com.example.philharmonic.violinservice;
 
-import com.example.philharmonic.violinservice.models.Section;
+import com.example.philharmonic.violinservice.models.Tutti;
 import com.example.philharmonic.violinservice.models.Violin;
-import com.example.philharmonic.violinservice.repositories.SectionRepository;
+import com.example.philharmonic.violinservice.repositories.TuttiRepository;
 import com.example.philharmonic.violinservice.repositories.ViolinRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ViolinServiceApplicationTests {
     @Autowired
-    SectionRepository sectionRepository;
+    TuttiRepository tuttiRepository;
 
     @Autowired
     ViolinRepository violinRepository;
@@ -23,11 +21,11 @@ public class ViolinServiceApplicationTests {
     public void contextLoads(){}
 
     @Test
-    public void createViolinAndSection(){
-        Section section = new Section("Firsts");
-        sectionRepository.save(section);
+    public void createViolinAndTutti(){
+        Tutti tutti = new Tutti("Firsts");
+        tuttiRepository.save(tutti);
 
-        Violin violinist = new Violin("Johnny", "Walker", 25, section);
+        Violin violinist = new Violin("Johnny", "Walker", 25, tutti);
         violinRepository.save(violinist);
     }
 }
