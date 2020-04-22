@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="sections")
+@Table(name="tuttis")
 
-public class Section {
+public class Tutti {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,14 +19,14 @@ public class Section {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "section")
-    private List<Violin> sections;
+    @OneToMany(mappedBy = "tutti")
+    private List<Violin> tuttis;
 
-    public Section(String name) {
+    public Tutti(String name) {
         this.name = name;
-        this.sections = new ArrayList<Violin>();
+        this.tuttis = new ArrayList<Violin>();
     }
-    public Section(){}
+    public Tutti(){}
 
     public String getName() {
         return name;
@@ -37,11 +37,11 @@ public class Section {
     }
 
     public List<Violin> getFirstViolins() {
-        return sections;
+        return tuttis;
     }
 
-    public void setFirstViolins(List<Violin> firsts) {
-        this.sections = sections;
+    public void setFirstViolins(List<Violin> tuttis) {
+        this.tuttis = tuttis;
     }
 
     public Long getId() {
