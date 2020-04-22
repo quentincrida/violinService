@@ -21,13 +21,13 @@ public class Violin {
 
     @ManyToOne
     @JoinColumn(name="first_id", nullable = false)
-    private First first;
+    private Section section;
 
-    public Violin(String firstName, String lastName, int age, First first) {
+    public Violin(String firstName, String lastName, int age, Section section) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.first = first;
+        this.section = section;
     }
     public Violin(){}
 
@@ -63,11 +63,11 @@ public class Violin {
         this.id = id;
     }
 
-    public First getFirst() {
-        return first;
+    public Section getSection() {
+        return section;
     }
 
-    public void setFirst(First first) {
-        this.first = first;
+    public void setSection(Section section) {
+        this.section = section;
     }
 }
