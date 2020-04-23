@@ -23,9 +23,11 @@ public class ViolinServiceApplicationTests {
     @Test
     public void createViolinAndTutti(){
         Tutti tutti = new Tutti("Firsts");
+        tutti.setId(1L);
         tuttiRepository.save(tutti);
 
         Violin violinist = new Violin("Johnny", "Walker", 25, tutti);
+        tutti.setId(1L);
         violinRepository.save(violinist);
     }
 }
