@@ -1,6 +1,8 @@
 package com.example.philharmonic.violinservice.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="violins")
@@ -23,11 +25,27 @@ public class Violin {
     @JoinColumn(name="tutti_id", nullable = false)
     private Tutti tutti;
 
+    @ManyToMany
+    @JoinTable(
+            name = "violins_symphonies",
+            joinColumns = {@JoinColumn(
+                    name = "violin_id",
+                    nullable = false, updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "symphony_id",
+                    nullable = false,
+                    updatable = false )
+            }
+    )
+    private List<Symphony> symphonies;
+
     public Violin(String firstName, String lastName, int age, Tutti tutti) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.tutti = tutti;
+        this.symphonies = new ArrayList<>();
     }
     public Violin(){}
 
@@ -70,4 +88,7 @@ public class Violin {
     public void setTutti(Tutti tutti) {
         this.tutti = tutti;
     }
+//    public void addSymphony(){
+//        this.symphonies.add(symphony);
+//    }
 }

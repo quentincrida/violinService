@@ -1,7 +1,9 @@
 package com.example.philharmonic.violinservice;
 
+import com.example.philharmonic.violinservice.models.Symphony;
 import com.example.philharmonic.violinservice.models.Tutti;
 import com.example.philharmonic.violinservice.models.Violin;
+import com.example.philharmonic.violinservice.repositories.SymphonyRepository;
 import com.example.philharmonic.violinservice.repositories.TuttiRepository;
 import com.example.philharmonic.violinservice.repositories.ViolinRepository;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,9 @@ public class ViolinServiceApplicationTests {
     @Autowired
     ViolinRepository violinRepository;
 
+    @Autowired
+    SymphonyRepository symphonyRepository;
+
     @Test
     public void contextLoads(){}
 
@@ -29,5 +34,19 @@ public class ViolinServiceApplicationTests {
         Violin violinist = new Violin("Johnny", "Walker", 25, tutti);
        // tutti.setId(1L);
         violinRepository.save(violinist);
+    }
+
+    @Test
+    public void addViolinsToSymphonies(){
+        Tutti tutti = new Tutti("Firsts");
+        tuttiRepository.save(tutti);
+
+        Violin leader = new Violin("Jurgs", "Schwietering", 28, tutti);
+        violinRepository.save(leader);
+
+        Symphony symphony = new Symphony("Beethoven", 131);
+        symphonyRepository.save(symphony);
+
+       symphony.addViolin(leader);
     }
 }
