@@ -1,5 +1,7 @@
 package com.example.philharmonic.violinservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +22,13 @@ public class Violin {
 
     @Column(name="age")
     private int age;
-
+//new jsonignore
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="tutti_id", nullable = false)
     private Tutti tutti;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "violins_symphonies",

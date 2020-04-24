@@ -35,7 +35,7 @@ public class Symphony {
     public Symphony(String composer, int opus) {
         this.composer = composer;
         this.opus = opus;
-        this.violins = new ArrayList();
+        this.violins  = new ArrayList();
     }
 
     public Symphony(){}
