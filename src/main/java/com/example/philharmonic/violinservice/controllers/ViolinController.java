@@ -8,16 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 public class ViolinController {
-
-    @Autowired
-    ViolinRepository violinRepository;
-//responseEntity allows me to specify status code,
+    //responseEntity allows me to specify status code,
 // and getAllViolins will take a payload of type List<Violin>.
     //HttpStatus.OK = code 200
+    @Autowired
+    ViolinRepository violinRepository;
+
     @GetMapping(value = "/violins")
     public ResponseEntity<List<Violin>> getAllViolins(){
         return new ResponseEntity<>(violinRepository.findAll(), HttpStatus.OK);
@@ -28,14 +28,11 @@ public class ViolinController {
             return new ResponseEntity<>(violinRepository.findById(id), HttpStatus.OK);
         }
 
-    @GetMapping(value= "violins/first_name")
-    public void getViolinsByName(String firstName){ this.violinRepository.findAll();}
-
-   @PostMapping(value = "/violins")
-    public ResponseEntity<Violin> createViolin (@RequestBody Violin violin){
+    @PostMapping(value = "/violins")
+    public ResponseEntity<Violin> postViolin(@RequestBody Violin violin){
         violinRepository.save(violin);
         return new ResponseEntity<>(violin, HttpStatus.CREATED);
-   }
+    }
    }
 
 

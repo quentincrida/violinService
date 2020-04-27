@@ -29,7 +29,7 @@ public class Violin {
     @JoinColumn(name="tutti_id", nullable = false)
     private Tutti tutti;
 
-//    @JsonIgnore
+    @JsonIgnore
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
