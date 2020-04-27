@@ -92,7 +92,14 @@ public class Violin {
     public void setTutti(Tutti tutti) {
         this.tutti = tutti;
     }
-//    public void addSymphony(){
-//        this.symphonies.add(symphony);
-//    }
+
+    public List<Symphony> getSymphonies() {return symphonies;}
+
+    public void setSymphonies(List<Symphony> symphonies) {
+        this.symphonies = symphonies;
+    }
+
+    public void addSymphony(Symphony symphony){
+        this.symphonies.add(symphony);
+    }
 }
