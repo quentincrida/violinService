@@ -24,8 +24,8 @@ public class ViolinController {
     }
 
     @GetMapping(value = "/violins/{id}")
-    public Optional<Violin> getViolin(@PathVariable Long id){
-            return violinRepository.findById(id);
+    public ResponseEntity getViolin(@PathVariable Long id){
+            return new ResponseEntity<>(violinRepository.findById(id), HttpStatus.OK);
         }
 
     @GetMapping(value= "violins/first_name")
