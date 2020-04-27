@@ -5,9 +5,7 @@ import com.example.philharmonic.violinservice.repositories.TuttiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,4 +20,11 @@ public class TuttiController {
 
     @GetMapping(value = "tuttis/{id}")
     public ResponseEntity getTutti(@PathVariable Long id){ return new ResponseEntity(tuttiRepository.findById(id), HttpStatus.OK );}
+
+    @PostMapping(value = "/tuttis")
+    public ResponseEntity<Tutti> createTutti(@RequestBody Tutti tutti){
+        tuttiRepository.save(tutti);
+        return new ResponseEntity<>(tutti, HttpStatus.CREATED);
+    }
+
 }

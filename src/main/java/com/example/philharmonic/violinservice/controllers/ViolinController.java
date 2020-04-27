@@ -31,11 +31,11 @@ public class ViolinController {
     @GetMapping(value= "violins/first_name")
     public void getViolinsByName(String firstName){ this.violinRepository.findAll();}
 
-    @PostMapping(value = "/violins")
-    public ResponseEntity<Violin> postViolin(@RequestBody Violin violin){
+   @PostMapping(value = "/violins")
+    public ResponseEntity<Violin> createViolin (@RequestBody Violin violin){
         violinRepository.save(violin);
         return new ResponseEntity<>(violin, HttpStatus.CREATED);
-    }
+   }
    }
 
 

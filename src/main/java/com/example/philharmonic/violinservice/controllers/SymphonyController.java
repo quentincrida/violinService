@@ -5,9 +5,7 @@ import com.example.philharmonic.violinservice.repositories.SymphonyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +19,11 @@ public class SymphonyController {
     public ResponseEntity<List<Symphony>> getAllSymphonies(){ return new ResponseEntity<>(symphonyRepository.findAll(), HttpStatus.OK);}
 
     @GetMapping(value = "/symphonies/{id}")
-    public ResponseEntity getSymphoniesById(@PathVariable Long id) { return new ResponseEntity<>(symphonyRepository.findById(id), HttpStatus.OK);}
+    public ResponseEntity getSymphonies(@PathVariable Long id) { return new ResponseEntity<>(symphonyRepository.findById(id), HttpStatus.OK);}
 
+    @PostMapping(value = "/symphonies")
+    public ResponseEntity<Symphony> createSymphony(@RequestBody Symphony symphony){
+        symphonyRepository.save(symphony);
+        return new ResponseEntity<>(symphony, HttpStatus.CREATED);
+    }
 }
