@@ -1,5 +1,6 @@
 package com.example.philharmonic.violinservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,7 +19,9 @@ public class Tutti {
     @Column(name="name")
     private String name;
 
+    //prevent recursion with @JsonBackReference
     @JsonIgnore
+//    @JsonBackReference
     @OneToMany(mappedBy = "tutti")
     private List<Violin> tuttis;
 

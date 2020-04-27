@@ -15,10 +15,12 @@ public class ViolinController {
 
     @Autowired
     ViolinRepository violinRepository;
-
+//responseEntity allows me to specify status code,
+// and getAllViolins will take a payload of type List<Violin>.
+    //HttpStatus.OK = code 200
     @GetMapping(value = "/violins")
-    public List<Violin> getAllViolins(){
-        return violinRepository.findAll();
+    public ResponseEntity<List<Violin>> getAllViolins(){
+        return new ResponseEntity<>(violinRepository.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/violins/{id}")

@@ -1,6 +1,7 @@
 package com.example.philharmonic.violinservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,8 +29,9 @@ public class Violin {
     @JoinColumn(name="tutti_id", nullable = false)
     private Tutti tutti;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "violins_symphonies",
             joinColumns = {@JoinColumn(
