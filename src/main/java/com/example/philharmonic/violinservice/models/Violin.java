@@ -23,14 +23,15 @@ public class Violin {
 
     @Column(name="age")
     private int age;
-//new jsonignore
-    @JsonIgnore
+
+//******** JSON IGNORE HERE WILL BREAK IT!!!!!
     @ManyToOne
     @JoinColumn(name="tutti_id", nullable = false)
     private Tutti tutti;
 
     @JsonIgnore
     @ManyToMany
+//    optional CASCADE
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "violins_symphonies",
@@ -93,12 +94,6 @@ public class Violin {
 
     public void setTutti(Tutti tutti) {
         this.tutti = tutti;
-    }
-
-    public List<Symphony> getSymphonies() {return symphonies;}
-
-    public void setSymphonies(List<Symphony> symphonies) {
-        this.symphonies = symphonies;
     }
 
     public void addSymphony(Symphony symphony){

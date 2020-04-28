@@ -1,6 +1,8 @@
 package com.example.philharmonic.violinservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,8 @@ public class Symphony {
 
     @JsonIgnore
     @ManyToMany
+    //NEW Cascade
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
            name = "violins_symphonies",
            joinColumns = {@JoinColumn(name = "symphony_id",
@@ -30,7 +34,7 @@ public class Symphony {
            nullable = false, updatable = false)
            })
 
-           private List<Violin> violins;
+    private List<Violin> violins;
 
     public Symphony(String composer, int opus) {
         this.composer = composer;
@@ -39,6 +43,14 @@ public class Symphony {
     }
 
     public Symphony(){}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getComposer() {
         return composer;
@@ -55,14 +67,14 @@ public class Symphony {
     public void setOpus(int opus) {
         this.opus = opus;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//
+//    public List<Violin> getViolins() {
+//        return violins;
+//    }
+//
+//    public void setViolins(List<Violin> violins) {
+//        this.violins = violins;
+//    }
 
     public void addViolin(Violin violin){
         this.violins.add(violin);

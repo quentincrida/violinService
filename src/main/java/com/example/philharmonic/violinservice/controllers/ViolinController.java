@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 public class ViolinController {
     //responseEntity allows me to specify status code,
@@ -17,7 +16,7 @@ public class ViolinController {
     //HttpStatus.OK = code 200
     @Autowired
     ViolinRepository violinRepository;
-
+//GetMapping takes ArrayList and serialize objects into JSON, and return as Http response
     @GetMapping(value = "/violins")
     public ResponseEntity<List<Violin>> getAllViolins(){
         return new ResponseEntity<>(violinRepository.findAll(), HttpStatus.OK);

@@ -19,15 +19,14 @@ public class Tutti {
     @Column(name="name")
     private String name;
 
-    //prevent recursion with @JsonBackReference
+    //prevent recursion with @JsonBackReference/JsonIgnore, but NOT on @ManyToOne
     @JsonIgnore
-//    @JsonBackReference
-    @OneToMany(mappedBy = "tutti")
-    private List<Violin> tuttis;
+    @OneToMany(mappedBy = "tutti", fetch = FetchType.LAZY)
+        private List<Violin> violins;
 
     public Tutti(String name) {
         this.name = name;
-        this.tuttis = new ArrayList<Violin>();
+        this.violins = new ArrayList<>();
     }
     public Tutti(){}
 
@@ -39,12 +38,12 @@ public class Tutti {
         this.name = name;
     }
 
-    public List<Violin> getFirstViolins() {
-        return tuttis;
+    public List<Violin> getViolins() {
+        return violins;
     }
 
-    public void setFirstViolins(List<Violin> tuttis) {
-        this.tuttis = tuttis;
+    public void setViolins(List<Violin> violins) {
+        this.violins = violins;
     }
 
     public Long getId() {

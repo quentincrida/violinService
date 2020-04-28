@@ -1,7 +1,9 @@
 # violinService
-GOTO: localhost:8080/h2
+run ViolinServiceApplicationTests, then ViolinServiceApplication
 
+GOTO: http://localhost:8080/h2
 USE:  ./db/violinservice_db
 
-GOTO localhost:8080/violins
+For Google or Insomnia,
+GOTO http://localhost:8080/violins
 (also use for Insomnia)
