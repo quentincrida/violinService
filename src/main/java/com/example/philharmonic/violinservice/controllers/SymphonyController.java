@@ -26,4 +26,9 @@ public class SymphonyController {
         symphonyRepository.save(symphony);
         return new ResponseEntity<>(symphony, HttpStatus.CREATED);
     }
+    @PatchMapping(value = "/symphonies/{id}")
+    public ResponseEntity<Symphony> setSymphony(@RequestBody Symphony symphony, @PathVariable Long id){
+        symphonyRepository.save(symphony);
+        return new ResponseEntity<>(symphony, HttpStatus.CREATED);
+    }
 }

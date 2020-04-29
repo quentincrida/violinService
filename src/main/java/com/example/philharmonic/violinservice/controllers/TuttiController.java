@@ -26,5 +26,10 @@ public class TuttiController {
         tuttiRepository.save(tutti);
         return new ResponseEntity<>(tutti, HttpStatus.CREATED);
     }
+    @PatchMapping(value = "/tuttis/{id}")
+    public ResponseEntity<Tutti> setTutti(@RequestBody Tutti tutti, @PathVariable Long id){
+        tuttiRepository.save(tutti);
+        return new ResponseEntity<>(tutti, HttpStatus.CREATED);
+    }
 
 }
