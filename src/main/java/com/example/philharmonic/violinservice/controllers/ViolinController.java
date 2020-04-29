@@ -32,6 +32,11 @@ public class ViolinController {
         violinRepository.save(violin);
         return new ResponseEntity<>(violin, HttpStatus.CREATED);
     }
+    @PatchMapping(value = "/violins/{id}")
+    public ResponseEntity<Violin> setViolin(@RequestBody Violin violin, @PathVariable Long id){
+        violinRepository.save(violin);
+        return new ResponseEntity<>(violin, HttpStatus.CREATED);
+    }
    }
 
 
