@@ -90,4 +90,17 @@ public class ViolinServiceApplicationTests {
         assertEquals("Martens", foundViolins.get(1).getLastName());
         assertEquals("Emile", foundViolins.get(0).getFirstName());
     }
+    @Test
+    public void canFindTuttisWithViolinsFirstName(){
+        List<Tutti> foundTuttis = tuttiRepository.findByViolinsFirstName("Este");
+//        assertEquals("First Violins", foundTuttis.get(0).getName());
+    }
+
+//    Find all Symphonies for a given Tutti
+    @Test
+    public void canFindAllSymphoniesForAGivenTutti(){
+       Tutti foundTutti = tuttiRepository.getOne(1L);
+        List<Symphony> foundSymphonies = symphonyRepository.findByViolinsTutti(foundTutti);
+
+    }
 }
