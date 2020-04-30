@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 
 //@RunWith(SpringRunner.class)
 @SpringBootTest
@@ -68,5 +72,22 @@ public class ViolinServiceApplicationTests {
         symphony.addViolin(leader);
         symphony.addViolin(violin2);
         symphony.addViolin(violin3);
+    }
+    @Test
+    public void canFindViolinsOver43(){
+        List<Violin> found = violinRepository.findViolinsByAgeGreaterThan(43);
+
+    }
+    @Test
+    public void findSymphoniesByComposer(){
+        List<Symphony> found = symphonyRepository.findSymphoniesByComposer("Beethoven");
+        assertEquals("Beethoven", found.get(0).getComposer());
+    }
+    @Test
+    public void findViolinsInSymphonyId(){
+        List<Violin> foundViolins = violinRepository.findBySymphoniesId(5L);
+        assertEquals(2, foundViolins.size());
+        assertEquals("Martens", foundViolins.get(1).getLastName());
+        assertEquals("Emile", foundViolins.get(0).getFirstName());
     }
 }
