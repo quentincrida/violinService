@@ -15,9 +15,19 @@ public class SymphonyController {
     @Autowired
     SymphonyRepository symphonyRepository;
 
-    @GetMapping(value="/symphonies")
-    public ResponseEntity<List<Symphony>> getAllSymphonies(){ return new ResponseEntity<>(symphonyRepository.findAll(), HttpStatus.OK);}
+//refactored to accommodate second route
+//    @GetMapping(value="/symphonies")
+//    public ResponseEntity<List<Symphony>> getAllSymphonies(){ return new ResponseEntity<>(symphonyRepository.findAll(), HttpStatus.OK);}
 
+//already /symphonies route being used, so has to be altered to accommodate two routes: Symphony and by Composer filter
+@GetMapping(value = "/symphonies")
+public ResponseEntity<List<Symphony>> findSymphoniesByComposerQueryString(
+        @RequestParam(name="composer", required = false) String composer) {
+    if (composer != null) {
+        return new ResponseEntity<>(symphonyRepository.findSymphoniesByComposer(composer), HttpStatus.OK);
+    }
+    return new ResponseEntity<>(symphonyRepository.findAll(), HttpStatus.OK);
+}
     @GetMapping(value = "/symphonies/{id}")
     public ResponseEntity getSymphonies(@PathVariable Long id) { return new ResponseEntity<>(symphonyRepository.findById(id), HttpStatus.OK);}
 
@@ -31,4 +41,8 @@ public class SymphonyController {
         symphonyRepository.save(symphony);
         return new ResponseEntity<>(symphony, HttpStatus.CREATED);
     }
+
+
+
+
 }
