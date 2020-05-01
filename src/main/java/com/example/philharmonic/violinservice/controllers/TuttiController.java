@@ -31,5 +31,18 @@ public class TuttiController {
         tuttiRepository.save(tutti);
         return new ResponseEntity<>(tutti, HttpStatus.CREATED);
     }
+//    @GetMapping(value = "/tuttis/violins/named/{name}")
+//    public List<Tutti> findByViolinsFirstName(@PathVariable String name){
+//        return tuttiRepository.findByViolinsFirstName(name);
+//    }
+
+//    same as above, using @RequestParam
+    @GetMapping(value = "/tuttis/violins")
+    public ResponseEntity<List<Tutti>> findTuttisThatHaveViolinsNamedQueryString(
+            @RequestParam(name="named") String name){
+        return new ResponseEntity<>(tuttiRepository.findByViolinsFirstName(name), HttpStatus.OK);
+    }
+
+
 
 }
