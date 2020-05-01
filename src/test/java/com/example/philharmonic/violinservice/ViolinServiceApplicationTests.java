@@ -76,7 +76,7 @@ public class ViolinServiceApplicationTests {
     @Test
     public void canFindViolinsOver43(){
         List<Violin> found = violinRepository.findViolinsByAgeGreaterThan(43);
-
+        assertEquals(3, found.size());
     }
     @Test
     public void findSymphoniesByComposer(){
@@ -93,14 +93,15 @@ public class ViolinServiceApplicationTests {
     @Test
     public void canFindTuttisWithViolinsFirstName(){
         List<Tutti> foundTuttis = tuttiRepository.findByViolinsFirstName("Este");
-//        assertEquals("First Violins", foundTuttis.get(0).getName());
+        assertEquals("First Violins", foundTuttis.get(0).getName());
     }
 
 //    Find all Symphonies for a given Tutti
     @Test
     public void canFindAllSymphoniesForAGivenTutti(){
-       Tutti foundTutti = tuttiRepository.getOne(1L);
+       Tutti foundTutti = tuttiRepository.getOne(2L);
         List<Symphony> foundSymphonies = symphonyRepository.findByViolinsTutti(foundTutti);
+        assertEquals(3,foundSymphonies.size());
 
     }
 }

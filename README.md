@@ -9,3 +9,5 @@ GOTO http://localhost:8080/violins
 (also use for Insomnia)
 
 ***Includes some Derived Queries
+
+****DELETE DB AFTER EACH TEST
