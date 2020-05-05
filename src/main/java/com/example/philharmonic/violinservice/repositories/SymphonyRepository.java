@@ -11,4 +11,8 @@ public interface SymphonyRepository extends JpaRepository<Symphony, Long> {
 
     //Find all Symphonies for a given Tutti
     List<Symphony> findByViolinsTutti(Tutti tutti);
+
+    List<Symphony> findSymphoniesByOpus(int opus);
+
+
 }

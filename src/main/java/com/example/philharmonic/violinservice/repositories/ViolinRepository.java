@@ -8,7 +8,12 @@ import java.util.List;
 
 @Repository
 public interface ViolinRepository extends JpaRepository<Violin, Long> {
+
     List<Violin> findViolinsByAgeGreaterThan(int age);
 
     List<Violin> findBySymphoniesId(Long id);
+
+    List<Violin> findViolinsByFirstName(String firstName);
+
+
 }

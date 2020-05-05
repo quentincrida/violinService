@@ -6,7 +6,8 @@ import com.example.philharmonic.violinservice.models.Violin;
 import com.example.philharmonic.violinservice.repositories.SymphonyRepository;
 import com.example.philharmonic.violinservice.repositories.TuttiRepository;
 import com.example.philharmonic.violinservice.repositories.ViolinRepository;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ViolinServiceApplicationTests {
     @Autowired
@@ -102,6 +103,20 @@ public class ViolinServiceApplicationTests {
        Tutti foundTutti = tuttiRepository.getOne(2L);
         List<Symphony> foundSymphonies = symphonyRepository.findByViolinsTutti(foundTutti);
         assertEquals(3,foundSymphonies.size());
-
     }
+
+    //get violins with specific first name
+    @Test
+    public void getAllViolinsByFirstNameEste(){
+        List<Violin> found = violinRepository.findViolinsByFirstName("Este");
+        assertEquals(1, found.size());
+        assertEquals("Visser", found.get(0).getLastName());
+    }
+    @Test
+    public void getSymphoniesOfOpus1(){
+        List<Symphony> found = symphonyRepository.findSymphoniesByOpus(1);
+        assertEquals(1, found.size());
+        assertEquals("Haydn", found.get(0).getComposer());
+    }
+//
 }

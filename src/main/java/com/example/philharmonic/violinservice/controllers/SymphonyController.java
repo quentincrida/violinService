@@ -1,7 +1,9 @@
 package com.example.philharmonic.violinservice.controllers;
 
 import com.example.philharmonic.violinservice.models.Symphony;
+import com.example.philharmonic.violinservice.models.Violin;
 import com.example.philharmonic.violinservice.repositories.SymphonyRepository;
+import com.example.philharmonic.violinservice.repositories.ViolinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class SymphonyController {
     @Autowired
     SymphonyRepository symphonyRepository;
+    @Autowired
+    ViolinRepository violinRepository;
 
 //refactored to accommodate second route
 //    @GetMapping(value="/symphonies")
@@ -41,8 +45,13 @@ public ResponseEntity<List<Symphony>> findSymphoniesByComposerQueryString(
         symphonyRepository.save(symphony);
         return new ResponseEntity<>(symphony, HttpStatus.CREATED);
     }
-
-
-
-
+    @GetMapping(value = "/symphonies/opus/{opus}")
+    public List<Symphony> getSymphonyByOpusNumber(@PathVariable int opus){
+        return symphonyRepository.findSymphoniesByOpus(opus);
+    }
+//    get violins of specific age in symphonies by Id
+//    @GetMapping(value = "/symphonies/{id}/violins/age/{age}")
+//    public List<Violin> getViolinsInSymphoniesByAge(@PathVariable Long symphony_id, @PathVariable int age) {
+//        return violinRepository.getViolinBySymphonyIdAndAge(symphony_id, age);
+//    }
 }

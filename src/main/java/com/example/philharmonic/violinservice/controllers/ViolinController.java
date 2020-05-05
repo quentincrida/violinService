@@ -37,6 +37,11 @@ public class ViolinController {
         violinRepository.save(violin);
         return new ResponseEntity<>(violin, HttpStatus.CREATED);
     }
+
+    @GetMapping(value = "violins/first_name/{first_name}")
+    public List<Violin> getViolinsByFirstName(@PathVariable String first_name){
+        return violinRepository.findViolinsByFirstName(first_name);
+    }
    }
 
 
